@@ -9,13 +9,13 @@ import pickle
 def make_mdps_mask(cond_mask_full, target_mask, left_window=1, right_window=1):
     neigh = torch.zeros_like(target_mask)
 
-    # 오른쪽 이웃 (future)
+    # future
     for w in range(1, right_window+1):
         right = torch.roll(target_mask, shifts=+w, dims=-1)
         right[..., :w] = 0
         neigh = torch.clamp(neigh + right, 0, 1)
 
-    # 왼쪽 이웃 (past)
+    # past
     for w in range(1, left_window+1):
         left = torch.roll(target_mask, shifts=-w, dims=-1)
         left[..., -w:] = 0
@@ -46,12 +46,14 @@ def linear_interpolate_fill(x, obs_mask):
             mask = obs_mask[b, k] > 0.5
             n = int(mask.sum().item())
             if n == 0:
-                # 관측점이 아예 없으면 그대로 
                 continue
                 
             if n == 1:
+                #pm25 data setting
                 #v = y[b, k][mask][0]
                 #y_fill[b, k].fill_(v)
+                
+                #physio data setting
                 continue
 
             tt = t[b, k][mask]                  # observed time indices
