@@ -9,8 +9,8 @@ import numpy as np
 
 
 from dataset_pm25 import get_dataloader
-from main_model_dps_Copy3 import CSDI_PM25
-from utils_dps_Copy3 import train, evaluate
+from main_model_dps import CSDI_PM25
+from utils_dps import train, evaluate
 
 parser = argparse.ArgumentParser(description="CSDI")
 parser.add_argument("--config", type=str, default="base.yaml")
