@@ -5,9 +5,9 @@ import json
 import yaml
 import os
 
-from main_model_dps_Copy3 import CSDI_Physio
+from main_model_dps import CSDI_Physio
 from dataset_physio import get_dataloader
-from utils_dps_Copy3 import train, evaluate
+from utils_dps import train, evaluate
 
 parser = argparse.ArgumentParser(description="CSDI")
 parser.add_argument("--config", type=str, default="base.yaml")
